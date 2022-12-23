@@ -5,9 +5,6 @@ on:
     branches:
       - main
 
-permissions:
-  pull-requests: 'write'
-
 jobs:
   release:
     runs-on: ubuntu-latest
@@ -21,7 +18,9 @@ jobs:
       - env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
-      - name: Delete branch protection on main
+      - env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        name: Delete branch protection on main
         uses: actions/github-script@v6.3.3
         with:
           script: |
@@ -31,7 +30,9 @@ jobs:
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm release-it
-      - if: always()
+      - env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        if: always()
         name: Recreate branch protection on main
         uses: actions/github-script@v6.3.3
         with:
@@ -46,7 +47,7 @@ jobs:
                 block_creations: false,
                 branch: "main",
                 enforce_admins: false,
-                owner,
+                owner: "JoshuaKGoldberg",
                 repo: repository,
                 required_conversation_resolution: true,
                 required_linear_history: false,
