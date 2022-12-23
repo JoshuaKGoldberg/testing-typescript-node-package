@@ -18,11 +18,10 @@ jobs:
       - env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
-      - env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        name: Delete branch protection on main
+      - name: Delete branch protection on main
         uses: actions/github-script@v6.3.3
         with:
+          github-token: ${{ secrets.ACCESS_TOKEN }}
           script: |
             github.request(
               `DELETE /repos/JoshuaKGoldberg/testing-typescript-node-package/branches/main/protection`,
@@ -30,12 +29,11 @@ jobs:
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm release-it
-      - env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        if: always()
+      - if: always()
         name: Recreate branch protection on main
         uses: actions/github-script@v6.3.3
         with:
+          github-token: ${{ secrets.ACCESS_TOKEN }}
           script: |
             github.request(
               `PUT /repos/JoshuaKGoldberg/testing-typescript-node-package/branches/main/protection`,
@@ -48,7 +46,7 @@ jobs:
                 branch: "main",
                 enforce_admins: false,
                 owner: "JoshuaKGoldberg",
-                repo: repository,
+                repo: "testing-typescript-node-package",
                 required_conversation_resolution: true,
                 required_linear_history: false,
                 required_pull_request_reviews: null,
