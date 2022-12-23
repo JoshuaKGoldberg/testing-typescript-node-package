@@ -23,9 +23,11 @@ jobs:
         with:
           github-token: ${{ secrets.ACCESS_TOKEN }}
           script: |
-            github.request(
-              `DELETE /repos/JoshuaKGoldberg/testing-typescript-node-package/branches/main/protection`,
-            );
+            try {
+              github.request(
+                `DELETE /repos/JoshuaKGoldberg/testing-typescript-node-package/branches/main/protection`,
+              );
+            } catch {}
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm release-it
