@@ -24,10 +24,14 @@ jobs:
           github-token: ${{ secrets.ACCESS_TOKEN }}
           script: |
             try {
-              github.request(
+              await github.request(
                 `DELETE /repos/JoshuaKGoldberg/testing-typescript-node-package/branches/main/protection`,
               );
-            } catch {}
+            } catch (error) {
+              if (!error.message?.includes?.("Branch not protected")) {
+                throw error;
+              }
+            }
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm release-it
