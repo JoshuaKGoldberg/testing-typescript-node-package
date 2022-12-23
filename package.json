@@ -1,6 +1,6 @@
 {
 	"author": "Josh Goldberg <npm@joshuakgoldberg.com>",
-	"description": "Template TypeScript Node.js package with all the CI bells & whistles I commonly use. ✨",
+	"description": "Testing TypeScript Node.js package with all the CI bells & whistles I commonly use. ✨",
 	"devDependencies": {
 		"@release-it/conventional-changelog": "^5.1.1",
 		"@typescript-eslint/eslint-plugin": "^5.38.1",
@@ -45,11 +45,11 @@
 		"*": "prettier --ignore-unknown --write"
 	},
 	"main": "./lib/index.js",
-	"name": "template-typescript-node-package",
+	"name": "testing-typescript-node-package",
 	"packageManager": "pnpm@7.18.2",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/JoshuaKGoldberg/template-typescript-node-package"
+		"url": "https://github.com/JoshuaKGoldberg/testing-typescript-node-package"
 	},
 	"scripts": {
 		"build": "tsc",

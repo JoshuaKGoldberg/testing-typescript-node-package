@@ -15,7 +15,7 @@ try {
 	console.clear();
 	console.log(
 		chalk.greenBright`Welcome to the`,
-		chalk.bgGreenBright`template-typescript-node-package`,
+		chalk.bgGreenBright`testing-typescript-node-package`,
 		chalk.greenBright`package setup!`
 	);
 	console.log(
@@ -114,9 +114,9 @@ try {
 
 	for (const [from, to, files = ["./.github/**/*", "./*.*"]] of [
 		[existingPackage.description, description],
-		["Template TypeScript Node Package", title],
+		["Testing TypeScript Node Package", title],
 		["JoshuaKGoldberg", owner],
-		["template-typescript-node-package", repository],
+		["testing-typescript-node-package", repository],
 		[/"setup": ".*",/, ``, "./package.json"],
 		[
 			`"version": "${existingPackage.version}"`,
@@ -132,7 +132,7 @@ try {
 
 	<!-- You can remove this notice if you don't want it 🙂 no worries! -->
 	
-	> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [template-typescript-node-package](https://github.com/JoshuaKGoldberg/template-typescript-node-package).`;
+	> 💙 This package is based on [@JoshuaKGoldberg](https://github.com/JoshuaKGoldberg)'s [testing-typescript-node-package](https://github.com/JoshuaKGoldberg/testing-typescript-node-package).`;
 
 	if (
 		!(await fs.readFile("./README.md")).toString().includes(endOfReadmeNotice)

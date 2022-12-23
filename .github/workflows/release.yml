@@ -18,17 +18,51 @@ jobs:
       - env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
-      - name: Temporarily disable "include administrators" branch protection
-        uses: benjefferies/branch-protection-bot@1.0.7
+      - name: Delete branch protection on main
+        uses: actions/github-script@v6.3.3
         with:
-          access_token: ${{ secrets.ACCESS_TOKEN }}
-          branch: ${{ github.event.repository.default_branch }}
+          script: |
+            github.request(
+              `DELETE /repos/JoshuaKGoldberg/testing-typescript-node-package/branches/main/protection`,
+            );
       - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm release-it
       - if: always()
-        name: Enable "include administrators" branch protection
-        uses: benjefferies/branch-protection-bot@1.0.7
+        name: Recreate branch protection on main
+        uses: actions/github-script@v6.3.3
         with:
-          access_token: ${{ secrets.ACCESS_TOKEN }}
-          branch: ${{ github.event.repository.default_branch }}
+          script: |
+            github.request(
+              `PUT /repos/JoshuaKGoldberg/testing-typescript-node-package/branches/main/protection`,
+              {
+                allow_deletions: false,
+                allow_force_pushes: true,
+                allow_fork_pushes: false,
+                allow_fork_syncing: true,
+                block_creations: false,
+                branch: "main",
+                enforce_admins: false,
+                owner,
+                repo: repository,
+                required_conversation_resolution: true,
+                required_linear_history: false,
+                required_pull_request_reviews: null,
+                required_status_checks: {
+                  checks: [
+                    { context: "build" },
+                    { context: "compliance" },
+                    { context: "lint" },
+                    { context: "markdown" },
+                    { context: "package" },
+                    { context: "packages" },
+                    { context: "prettier" },
+                    { context: "prune" },
+                    { context: "spelling" },
+                    { context: "test" },
+                  ],
+                  strict: false,
+                },
+                restrictions: null,
+              }
+            );
