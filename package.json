@@ -46,7 +46,7 @@
 	},
 	"main": "./lib/index.js",
 	"name": "testing-typescript-node-package",
-	"packageManager": "pnpm@7.18.2",
+	"packageManager": "pnpm@7.29.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/JoshuaKGoldberg/testing-typescript-node-package"
