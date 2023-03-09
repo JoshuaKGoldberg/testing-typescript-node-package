@@ -4,7 +4,7 @@ specifiers:
   '@release-it/conventional-changelog': ^5.1.1
   '@typescript-eslint/eslint-plugin': ^5.38.1
   '@typescript-eslint/parser': ^5.38.1
-  '@vitest/coverage-istanbul': ^0.25.8
+  '@vitest/coverage-istanbul': ^0.29.0
   chalk: ^5.1.2
   cspell: ^6.12.0
   enquirer: ^2.3.6
@@ -40,7 +40,7 @@ devDependencies:
   '@release-it/conventional-changelog': 5.1.1_release-it@15.5.1
   '@typescript-eslint/eslint-plugin': 5.45.1_tdm6ms4ntwhlpozn7kjqrhum74
   '@typescript-eslint/parser': 5.45.1_s5ps7njkmjlaqajutnox5ntcla
-  '@vitest/coverage-istanbul': 0.25.8
+  '@vitest/coverage-istanbul': 0.29.2_vitest@0.25.8
   chalk: 5.1.2
   cspell: 6.17.0
   enquirer: 2.3.6
@@ -1362,8 +1362,10 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@vitest/coverage-istanbul/0.25.8:
-    resolution: {integrity: sha512-dll4gIr5by1+wHZsB9o6gxbOKKmpW7MSJD59fn0XrTBpsG2vJcGho8XekMFjZqilqa0xItQ+wv8lVc/K6dqhaw==}
+  /@vitest/coverage-istanbul/0.29.2_vitest@0.25.8:
+    resolution: {integrity: sha512-Wf0WOqviYRqP0nrD0oq12u+W5PqGKER1WSz22sOLSaKeU97R0DcMIqs6CSUdp4Jvd8YGrxHodt7d+RMC65ckCA==}
+    peerDependencies:
+      vitest: '>=0.28.0 <1'
     dependencies:
       istanbul-lib-coverage: 3.2.0
       istanbul-lib-instrument: 5.2.1
@@ -1373,17 +1375,7 @@ packages:
       test-exclude: 6.0.0
       vitest: 0.25.8
     transitivePeerDependencies:
-      - '@edge-runtime/vm'
-      - '@vitest/browser'
-      - '@vitest/ui'
-      - happy-dom
-      - jsdom
-      - less
-      - sass
-      - stylus
-      - sugarss
       - supports-color
-      - terser
     dev: true
 
   /@zkochan/js-yaml/0.0.6:
